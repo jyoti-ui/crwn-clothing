@@ -18,7 +18,7 @@ class Directory extends React.Component {
                     title: 'Hats',
                     imageUrl: hats,
                     id: 1,
-                    linkUrl: 'shop/hats'
+                    linkUrl: 'hats'
                 },
                 {
                     title: 'Jackets',
@@ -49,6 +49,7 @@ class Directory extends React.Component {
                 ]
         }
     }
+
 
     render() {
         return (

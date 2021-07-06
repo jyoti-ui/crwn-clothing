@@ -1,12 +1,19 @@
 import './App.css';
-import Directory from './components/pages/directory/directory.component';
+import HomePage from './components/pages/homepage/homepage.component';
+import ShopPage from './components/pages/shop/shop.component';
+import {Switch , Route } from 'react-router-dom';
+import React from 'react';
 
 function App() {
-  return (
-    <Directory/>
-  );
-}
+    return (
+      <Switch>
+        <Route exact path="/" component={HomePage}/>
+        <Route path="/shop" component={ShopPage}/>
+      </Switch>
+    );
+  }
 
+export default App;
 
 
 
@@ -32,6 +39,13 @@ function App() {
 //   )
 // }
 
+// const HatsPage = () => {
+//   return (
+//     <div>
+//       <h1> HATS PAGE </h1>
+//     </div>
+//   )
+// }
 // const TopicList = (props) => {
 //   console.log(props);
 //   return (
@@ -60,4 +74,4 @@ function App() {
 //   );
 // }
 
-export default App;
+// export default App;

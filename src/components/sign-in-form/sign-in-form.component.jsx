@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import "./sign-in-form.styles.scss";
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils.js";
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const defaultInput = {
   email: "",
@@ -16,6 +15,8 @@ const defaultInput = {
 const SignInForm = () => {
   const [formField, setFormField] = useState(defaultInput);
   const { email, password } = formField;
+
+  const navigate = useNavigate();
 
   //   useEffect(() => {
   //     (async () => {
@@ -35,11 +36,12 @@ const SignInForm = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
+      navigate("/");
+      
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -56,8 +58,8 @@ const SignInForm = () => {
   };
 
   const signInWithGoogleUser = async () => {
-    const response = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(response.user);
+    await signInWithGooglePopup();
+    navigate("/");
   };
 
   const handleChange = (e) => {
